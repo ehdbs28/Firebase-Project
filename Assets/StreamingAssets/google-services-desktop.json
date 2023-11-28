@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1036033013081",
+    "project_id": "jirung-jirung",
+    "storage_bucket": "jirung-jirung.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036033013081:android:21b9759be5fb8469ad0848",
+        "android_client_info": {
+          "package_name": "com.company.JIRUNGJIRUNG"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-94a7CMaU_bGi9MiehYOSCxLlULAD1iQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
