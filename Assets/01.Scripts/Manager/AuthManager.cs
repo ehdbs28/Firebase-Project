@@ -3,14 +3,14 @@ using Firebase;
 using Firebase.Auth;
 using UnityEngine;
 
-public class AuthManager : MonoBehaviour
+public class AuthManager
 {
     public static AuthManager Instance = null;
     
     private FirebaseApp _app;
     private FirebaseAuth _auth;
 
-    private void Awake()
+    public AuthManager()
     {
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class UIComponent : MonoBehaviour, IUI
+public abstract class UIComponent : PoolableMono, IUI
 {
     private Transform _prevParent;
 
@@ -42,10 +42,10 @@ public abstract class UIComponent : MonoBehaviour, IUI
         // PoolManager.Instance.Push(this);
     }
 
-    // public sealed override void Init()
-    // {
-    //     // Do Nothing;
-    // }
+    public sealed override void Init()
+    {
+        // Do Nothing;
+    }
 
     public abstract void UpdateUI();
 }

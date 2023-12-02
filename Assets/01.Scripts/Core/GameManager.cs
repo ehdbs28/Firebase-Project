@@ -1,10 +1,10 @@
-using System;
-using Firebase.Auth;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = null;
+
+    [SerializeField] private PoolingList _poolingList;
 
     public void Awake()
     {
@@ -17,12 +17,22 @@ public class GameManager : MonoBehaviour
         Instance = this;
         
         CreateManager();
+        CreatePool();
         
         DontDestroyOnLoad(gameObject);
     }
 
     private void CreateManager()
     {
-        AuthManager.Instance = GetComponent<AuthManager>();
+        AuthManager.Instance = new AuthManager();
+        PoolManager.Instance = new PoolManager();
+    }
+
+    private void CreatePool()
+    {
+        foreach (var poolingItem in _poolingList.poolingItems)
+        {
+            PoolManager.Instance.CreatePool(poolingItem.prefab, transform, poolingItem.cnt);
+        }
     }
 }
