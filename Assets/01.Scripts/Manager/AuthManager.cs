@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class AuthManager : MonoBehaviour
 {
+    public static AuthManager Instance = null;
+    
     private FirebaseApp _app;
     private FirebaseAuth _auth;
 
