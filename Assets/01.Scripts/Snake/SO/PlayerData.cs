@@ -5,4 +5,6 @@ public class PlayerData : ScriptableObject
 {
     public float movementSpeed;
     public float rotateSpeed;
+
+    public int segmentOffset;
 }

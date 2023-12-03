@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
-public class ModuleController : MonoBehaviour
+public class ModuleController : PoolableMono
 {
     public event Action OnUpdatingEvent = null;
     public event Action OnFixedUpdatingEvent = null;
@@ -34,5 +33,10 @@ public class ModuleController : MonoBehaviour
     public T GetModule<T>() where T : IModule
     {
         return _modules.OfType<T>().First();
+    }
+
+    public override void Init()
+    {
+        
     }
 }

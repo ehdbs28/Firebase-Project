@@ -180,6 +180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1235390490857735719}
+  - component: {fileID: 8696633817551431076}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -203,6 +204,21 @@ Transform:
   - {fileID: 529146891770531640}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8696633817551431076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639616283390737630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2635bec3f03246b2ba4b71ecd033e9ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputControl: {fileID: 11400000, guid: 3528abe7e4fea4e858721230700577be, type: 2}
+  _data: {fileID: 11400000, guid: 6c1fe3fb76b014dcf8a8e740358b0097, type: 2}
+  _isHead: 1
 --- !u!1 &4153975774990630287
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +330,7 @@ Transform:
   m_GameObject: {fileID: 4799537172360118158}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -398,7 +414,7 @@ Transform:
   m_GameObject: {fileID: 5573600353457259283}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
   m_LocalScale: {x: 0.49999997, y: 0.49999997, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

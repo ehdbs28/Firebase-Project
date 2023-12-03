@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SnakeRotateModule : BaseModule<SnakeController>
 {
-    private Vector2 _mouseDir;
+    private Vector2 _rotateDir;
     private Transform[] _eyeTransforms;
 
     public SnakeRotateModule(SnakeController controller) : base(controller)
@@ -24,19 +24,23 @@ public class SnakeRotateModule : BaseModule<SnakeController>
 
     private void CalcDir()
     {
-        var mousePos = Controller.InputControl.MouseWorldPosition;
-        _mouseDir = (mousePos - Controller.transform.position).normalized;
+        var destPos = Controller.IsHead ? Controller.InputControl.MouseWorldPosition : Controller.Parent.transform.position;
+        _rotateDir = (destPos - Controller.transform.position).normalized;
     }
 
     private void Rotate()
     {
-        var angle = Mathf.Atan2(_mouseDir.y, _mouseDir.x) * Mathf.Rad2Deg - 90f;
+        var angle = Mathf.Atan2(_rotateDir.y, _rotateDir.x) * Mathf.Rad2Deg - 90f;
         var destRotate = Quaternion.AngleAxis(angle, Vector3.forward);
         var lerpRotate = Quaternion.Lerp(Controller.transform.rotation, destRotate, Time.deltaTime * Controller.Data.rotateSpeed);
 
-        foreach (var eyeTrm in _eyeTransforms)
+        if (Controller.IsHead)
         {
-            eyeTrm.rotation = destRotate;
+            foreach (var eyeTrm in _eyeTransforms)
+            {
+                eyeTrm.rotation = destRotate;
+            }
+        
         }
         
         Controller.transform.rotation = lerpRotate;
