@@ -1,16 +1,23 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SnakeMovementModule : BaseModule<SnakeController>
 {
+    private readonly Rigidbody2D _rigidbody;
+    
     public SnakeMovementModule(SnakeController controller) : base(controller)
     {
+        if (controller.IsHead)
+        {
+            _rigidbody = controller.GetComponent<Rigidbody2D>();
+        }
     }
 
     public override void UpdateModule()
     {
         if (Controller.IsHead)
         {
-            Controller.transform.Translate(Controller.transform.up * (Controller.Data.movementSpeed * Time.deltaTime), Space.World); ;
+            _rigidbody.velocity = Controller.transform.up * Controller.Data.movementSpeed;
             Controller.PositionHistory.Insert(0, Controller.transform.position);
             if (Controller.PositionHistory.Count > Controller.Data.segmentOffset * Controller.PartsCnt)
             {

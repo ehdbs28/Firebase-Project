@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Item
+  - Snake
+  - SnakePart
   layers:
   - Default
   - TransparentFX
@@ -43,6 +46,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 3840620161
+    locked: 0
+  - name: Item
+    uniqueID: 435869541
     locked: 0
   - name: Player
     uniqueID: 1022507939

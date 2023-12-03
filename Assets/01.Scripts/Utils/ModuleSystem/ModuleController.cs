@@ -30,6 +30,15 @@ public class ModuleController : PoolableMono
         _modules.Add(module);
     }
 
+    public void RemoveAllModule()
+    {
+        foreach (var module in _modules)
+        {
+            module.ReleaseModule();
+        }
+        _modules.Clear();
+    }
+
     public T GetModule<T>() where T : IModule
     {
         return _modules.OfType<T>().First();

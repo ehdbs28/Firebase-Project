@@ -11,7 +11,7 @@ public abstract class BaseModule<T> : IModule where T : ModuleController
         Controller.OnFixedUpdatingEvent += FixedUpdateModule;
     }
     
-    ~BaseModule()
+    public void ReleaseModule()
     {
         Controller.OnUpdatingEvent -= UpdateModule;
         Controller.OnFixedUpdatingEvent -= FixedUpdateModule;

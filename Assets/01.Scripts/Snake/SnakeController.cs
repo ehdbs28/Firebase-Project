@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,22 +6,26 @@ using UnityEngine.InputSystem;
 public class SnakeController : ModuleController
 {
     [SerializeField] private InputControl _inputControl;
-    public InputControl InputControl => _inputControl;
-
     [SerializeField] private PlayerData _data;
-    public PlayerData Data => _data;
-
     [SerializeField] private bool _isHead;
-    public bool IsHead => _isHead;
 
-    public SnakeController Head { get; private set; }
-    public SnakeController Parent { get; private set; }
-    public SnakeController Child { get; private set; }
+    private SnakeController _head;
+    private SnakeController _parent;
+    private SnakeController _child;
     
-    public int Index { get; private set; }
-    public int PartsCnt { get; private set; }
-
     private List<Vector3> _positionHistory;
+    private int _index;
+    private int _partsCnt;
+
+    private bool _isDead;
+
+    public InputControl InputControl => _inputControl;
+    public PlayerData Data => _data;
+    public bool IsHead => _isHead;
+    public SnakeController Head => _head;
+    public SnakeController Parent => _parent;
+    public int Index => _index;
+    public int PartsCnt => _partsCnt;
     public List<Vector3> PositionHistory => _positionHistory;
 
     private void Awake()
@@ -28,45 +33,50 @@ public class SnakeController : ModuleController
         if (_isHead)
         {
             _positionHistory = new List<Vector3>();
-            Index = 0;
-            PartsCnt = 0;
+            _index = 0;
+            _partsCnt = 0;
+            _head = this;
         }
         
         AddModule(new SnakeMovementModule(this));
         AddModule(new SnakeRotateModule(this));
     }
 
-    public override void Update()
+    public void Setting(SnakeController head, SnakeController parent, int index)
     {
-        base.Update();
-        if (IsHead && Keyboard.current.wKey.wasPressedThisFrame)
-        {
-            GrowUp();
-        }
+        _child = null;
+        _head = head;
+        _parent = parent;
+        _index = index;
     }
 
-    public void GrowUp()
+    private void GrowUp()
     {
         if (_isHead)
         {
-            PartsCnt++;
+            _partsCnt++;
         }
         
-        if (Child is null)
+        if (_child is null)
         {
-            Child = PoolManager.Instance.Pop("SnakePart") as SnakeController;
-            Child.Head = _isHead ? this : Head;
-            Child.Parent = this;
-            Child.Index = Index + 1;
+            _child = PoolManager.Instance.Pop("SnakePart") as SnakeController;
+            _child.Setting(_head, this, _index + 1);
             return;
         }
         
-        Child.GrowUp();
+        _child.GrowUp();
     }
 
-    public override void Init()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        base.Init();
-        Child = null;
+        if (!_isHead || _isDead)
+        {
+            return;
+        }
+        
+        if (other.CompareTag("Item"))
+        {
+            GrowUp();
+        }
     }
 }
