@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private PoolingList _poolingList;
 
+    private Camera _mainCam;
+    public Camera MainCam => _mainCam;
+
     public void Awake()
     {
         if (Instance != null)
@@ -15,6 +18,7 @@ public class GameManager : MonoBehaviour
         }
         
         Instance = this;
+        _mainCam = Camera.main;
         
         CreateManager();
         CreatePool();
