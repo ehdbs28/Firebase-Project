@@ -1,13 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class SnakeController : ModuleController, IDamageable
 {
     [SerializeField] private InputControl _inputControl;
-    [SerializeField] private PlayerData _data;
+    [SerializeField] private SnakeData _data;
     [SerializeField] private bool _isHead;
 
     private SnakeController _head;
@@ -23,7 +21,7 @@ public class SnakeController : ModuleController, IDamageable
     #region Properties
 
     public InputControl InputControl => _inputControl;
-    public PlayerData Data => _data;
+    public SnakeData Data => _data;
     public bool IsHead => _isHead;
     public SnakeController Head => _head;
     public SnakeController Parent => _parent;
@@ -32,9 +30,11 @@ public class SnakeController : ModuleController, IDamageable
     public List<Vector3> PositionHistory => _positionHistory;
 
     #endregion
-
-    private void Awake()
+    
+    public void OnEnable()
     {
+        RemoveAllModule();
+        
         if (_isHead)
         {
             _positionHistory = new List<Vector3>();
@@ -46,6 +46,11 @@ public class SnakeController : ModuleController, IDamageable
         AddModule(new SnakeMovementModule(this));
         AddModule(new SnakeRotateModule(this));
         AddModule(new SnakeHealthModule(this));
+
+        if (!_isHead)
+        {
+            AddModule(new SnakeAttackModule(this));
+        }
     }
 
     public override void Update()
@@ -107,7 +112,15 @@ public class SnakeController : ModuleController, IDamageable
         
         _isDetached = true;
         _child?.Detach(detachPointIndex);
-        StartCoroutine(DetachRoutine((_index - detachPointIndex) * 0.1f));
+
+        if (_isHead)
+        {
+            Debug.Log("GameOver");
+        }
+        else
+        {
+            StartCoroutine(DetachRoutine((_index - detachPointIndex) * 0.1f));
+        }
     }
 
     private IEnumerator DetachRoutine(float delay)
@@ -118,19 +131,24 @@ public class SnakeController : ModuleController, IDamageable
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!_isHead || _isDetached)
+        if (_isDetached)
         {
             return;
         }
         
-        if (other.CompareTag("Item"))
+        if (_isHead && other.CompareTag("Item"))
         {
             GrowUp();
         }
+
+        if (other.CompareTag("Enemy"))
+        {
+            OnDamage();
+        }
     }
 
-    public void OnDamage(float damage)
+    public void OnDamage()
     {
-        GetModule<SnakeHealthModule>().OnDamage(damage);
+        GetModule<SnakeHealthModule>().OnDamage();
     }
 }

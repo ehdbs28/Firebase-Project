@@ -1,10 +1,8 @@
-using Unity.VisualScripting;
-
-public class SnakeHealthModule : BaseModule<SnakeController>
+public class EnemyHealthModule : BaseModule<EnemyController>
 {
     private int _currentHealth;
     
-    public SnakeHealthModule(SnakeController controller) : base(controller)
+    public EnemyHealthModule(EnemyController controller) : base(controller)
     {
         _currentHealth = Controller.Data.maxHealth;
     }
@@ -20,9 +18,10 @@ public class SnakeHealthModule : BaseModule<SnakeController>
     public void OnDamage()
     {
         _currentHealth -= 1;
+        
         if (_currentHealth <= 0)
         {
-            Controller.Detach(Controller.Index);
+            PoolManager.Instance.Push(Controller);
         }
     }
 }

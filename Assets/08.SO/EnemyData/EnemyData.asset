@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6849cb0f44c44edfbcc7158e162116bc, type: 3}
-  m_Name: PlayerData
+  m_Script: {fileID: 11500000, guid: 2370e85b30f34ee783ad142758eb2d8e, type: 3}
+  m_Name: EnemyData
   m_EditorClassIdentifier: 
-  movementSpeed: 5
-  rotateSpeed: 10
-  segmentOffset: 30
+  movementSpeed: 0.5
+  rotateSpeed: 5
+  maxHealth: 10

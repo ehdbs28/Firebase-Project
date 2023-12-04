@@ -7,6 +7,9 @@ TagManager:
   - Item
   - Snake
   - SnakePart
+  - SnakeParts
+  - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -49,6 +52,9 @@ TagManager:
     locked: 0
   - name: Item
     uniqueID: 435869541
+    locked: 0
+  - name: Enemy
+    uniqueID: 4116624891
     locked: 0
   - name: Player
     uniqueID: 1022507939

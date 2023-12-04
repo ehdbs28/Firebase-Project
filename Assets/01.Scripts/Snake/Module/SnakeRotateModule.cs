@@ -4,12 +4,14 @@ public class SnakeRotateModule : BaseModule<SnakeController>
 {
     private Vector2 _rotateDir;
     private Transform[] _eyeTransforms;
+    private Transform _tankTransform;
 
     public SnakeRotateModule(SnakeController controller) : base(controller)
     {
         _eyeTransforms = new Transform[2];
         _eyeTransforms[0] = controller.transform.Find("Visual/RightEye");
         _eyeTransforms[1] = controller.transform.Find("Visual/LeftEye");
+        _tankTransform = controller.transform.Find("Visual/Tank");
     }
 
     public override void UpdateModule()
@@ -40,7 +42,12 @@ public class SnakeRotateModule : BaseModule<SnakeController>
             {
                 eyeTrm.rotation = destRotate;
             }
-        
+        }
+        else
+        {
+            var dir = Controller.GetModule<SnakeAttackModule>().AttackDir;
+            angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
+            _tankTransform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
         
         Controller.transform.rotation = lerpRotate;
