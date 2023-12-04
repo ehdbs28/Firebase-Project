@@ -1,9 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SnakeController : ModuleController
+public class SnakeController : ModuleController, IDamageable
 {
     [SerializeField] private InputControl _inputControl;
     [SerializeField] private PlayerData _data;
@@ -17,7 +18,9 @@ public class SnakeController : ModuleController
     private int _index;
     private int _partsCnt;
 
-    private bool _isDead;
+    private bool _isDetached;
+
+    #region Properties
 
     public InputControl InputControl => _inputControl;
     public PlayerData Data => _data;
@@ -27,6 +30,8 @@ public class SnakeController : ModuleController
     public int Index => _index;
     public int PartsCnt => _partsCnt;
     public List<Vector3> PositionHistory => _positionHistory;
+
+    #endregion
 
     private void Awake()
     {
@@ -40,11 +45,32 @@ public class SnakeController : ModuleController
         
         AddModule(new SnakeMovementModule(this));
         AddModule(new SnakeRotateModule(this));
+        AddModule(new SnakeHealthModule(this));
+    }
+
+    public override void Update()
+    {
+        if (_isDetached || (_parent is not null && _parent._isDetached))
+        {
+            return;
+        }
+
+        base.Update();
+    }
+
+    public override void FixedUpdate()
+    {
+        if (_isDetached || (_parent is not null && _parent._isDetached))
+        {
+            return;
+        }
+        base.FixedUpdate();
     }
 
     public void Setting(SnakeController head, SnakeController parent, int index)
     {
         _child = null;
+        _isDetached = false;
         _head = head;
         _parent = parent;
         _index = index;
@@ -67,9 +93,32 @@ public class SnakeController : ModuleController
         _child.GrowUp();
     }
 
+    public void Detach(int detachPointIndex)
+    {
+        if (_isDetached)
+        {
+            return;
+        }
+
+        if (_parent)
+        {
+            _parent._child = null;
+        }
+        
+        _isDetached = true;
+        _child?.Detach(detachPointIndex);
+        StartCoroutine(DetachRoutine((_index - detachPointIndex) * 0.1f));
+    }
+
+    private IEnumerator DetachRoutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PoolManager.Instance.Push(this);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!_isHead || _isDead)
+        if (!_isHead || _isDetached)
         {
             return;
         }
@@ -78,5 +127,10 @@ public class SnakeController : ModuleController
         {
             GrowUp();
         }
+    }
+
+    public void OnDamage(float damage)
+    {
+        GetModule<SnakeHealthModule>().OnDamage(damage);
     }
 }

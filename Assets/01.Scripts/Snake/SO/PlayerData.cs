@@ -7,4 +7,6 @@ public class PlayerData : ScriptableObject
     public float rotateSpeed;
 
     public int segmentOffset;
+
+    public float maxHealth;
 }
