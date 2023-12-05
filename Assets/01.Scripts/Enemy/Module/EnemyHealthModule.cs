@@ -21,6 +21,7 @@ public class EnemyHealthModule : BaseModule<EnemyController>
         
         if (_currentHealth <= 0)
         {
+            StageManager.Instance.Builder.RemoveEnemy(Controller);
             PoolManager.Instance.Push(Controller);
         }
     }

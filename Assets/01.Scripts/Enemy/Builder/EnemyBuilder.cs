@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class EnemyBuilder
 {
-    private List<EnemyController> _enemies;
-
+    private readonly List<EnemyController> _enemies;
+    private readonly List<BuildArea> _buildAreas;
+    
     public bool IsEmpty => _enemies.Count <= 0;
 
-    public EnemyBuilder()
+    public List<EnemyController> Enemies => _enemies;
+
+    public EnemyBuilder(List<BuildArea> buildAreas)
     {
+        _buildAreas = buildAreas;
         _enemies = new List<EnemyController>();
     }
     
@@ -38,10 +42,7 @@ public class EnemyBuilder
 
     private Vector2 GetSpawnPoint()
     {
-        var screenSize = new Vector2(Screen.width, Screen.height);
-        var randomScreenPos = new Vector2(Random.Range(0f, screenSize.x), Random.Range(0f, screenSize.y));
-        var randomWorldPos = GameManager.Instance.MainCam.ScreenToWorldPoint(randomScreenPos);
-        randomWorldPos.z = 0;
-        return randomWorldPos;
+        var randIdx = Random.Range(0, _buildAreas.Count);
+        return _buildAreas[randIdx].GetAreaPosition();
     }
 }

@@ -45,7 +45,7 @@ public class SnakeAttackModule : BaseModule<SnakeController>
 
     private void CalcAttackDir()
     {
-        var enemies = Object.FindObjectsOfType<EnemyController>().ToList();
+        var enemies = StageManager.Instance.Builder.Enemies;
 
         if (enemies.Count > 0)
         {
