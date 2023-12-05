@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     {
         AuthManager.Instance = new AuthManager();
         PoolManager.Instance = new PoolManager();
+        StageManager.Instance = gameObject.AddComponent<StageManager>();
     }
 
     private void CreatePool()

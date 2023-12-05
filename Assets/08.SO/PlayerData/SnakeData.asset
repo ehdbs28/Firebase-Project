@@ -16,5 +16,6 @@ MonoBehaviour:
   rotateSpeed: 10
   segmentOffset: 20
   maxHealth: 1
-  attackDelay: 3
+  attackDelayMin: 2
+  attackDelayMax: 3
   bulletSpeed: 10

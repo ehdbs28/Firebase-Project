@@ -10,6 +10,8 @@ public class SnakeData : ScriptableObject
 
     public int maxHealth;
 
-    public float attackDelay;
+    public float attackDelayMin;
+    public float attackDelayMax;
+    
     public float bulletSpeed;
 }

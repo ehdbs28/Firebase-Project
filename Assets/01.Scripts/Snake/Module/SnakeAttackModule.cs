@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SnakeAttackModule : BaseModule<SnakeController>
 {
+    private float _attackDelay;
     private float _lastAttackTime;
 
     private EnemyController _target;
@@ -14,6 +15,7 @@ public class SnakeAttackModule : BaseModule<SnakeController>
 
     public SnakeAttackModule(SnakeController controller) : base(controller)
     {
+        _attackDelay = Random.Range(Controller.Data.attackDelayMin, Controller.Data.attackDelayMax);
         _lastAttackTime = Time.time;
         _firePos = controller.transform.Find("Visual/Tank/FirePos");
     }
@@ -21,7 +23,7 @@ public class SnakeAttackModule : BaseModule<SnakeController>
     public override void UpdateModule()
     {
         CalcAttackDir();
-        if (_target && Time.time >= _lastAttackTime + Controller.Data.attackDelay)
+        if (_target && Time.time >= _lastAttackTime + _attackDelay)
         {
             Attack();   
         }
