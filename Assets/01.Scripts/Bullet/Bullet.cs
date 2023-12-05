@@ -4,10 +4,12 @@ using UnityEngine;
 public class Bullet : PoolableMono
 {
     private Rigidbody2D _rigidbody;
+    private TrailRenderer _trailRenderer;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _trailRenderer = GetComponent<TrailRenderer>();
     }
 
     private void Update()
@@ -20,9 +22,11 @@ public class Bullet : PoolableMono
 
     public void Setting(Vector3 dir, float speed)
     {
-        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         _rigidbody.velocity = dir * speed;
+        _trailRenderer.Clear();
+        _trailRenderer.enabled = true;
     }
 
     private bool OutScreenBound()
@@ -36,5 +40,6 @@ public class Bullet : PoolableMono
 
     public override void Init()
     {
+        _trailRenderer.enabled = false;
     }
 }
