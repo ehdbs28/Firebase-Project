@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using UnityEngine;
 
@@ -10,6 +9,8 @@ public class EnemyController : ModuleController, IDamageable
 
     public SnakeController Target => _target;
     public EnemyData Data => _data;
+    
+    public int Index { get; set; }
 
     public void OnEnable()
     {
@@ -38,7 +39,7 @@ public class EnemyController : ModuleController, IDamageable
         if (other.CompareTag("Bullet"))
         {
             OnDamage();
-            PoolManager.Instance.Push(other.GetComponent<Bullet>());
+            other.GetComponent<Bullet>().DestroyObject();
         }
     }
 

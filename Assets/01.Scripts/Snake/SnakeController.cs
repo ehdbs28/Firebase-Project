@@ -126,6 +126,11 @@ public class SnakeController : ModuleController, IDamageable
     private IEnumerator DetachRoutine(float delay)
     {
         yield return new WaitForSeconds(delay);
+        
+        var destroyEffect = PoolManager.Instance.Pop("DestroyEffect") as PoolableParticle;
+        destroyEffect.SetPositionAndRotation(transform.position);
+        destroyEffect.Play();
+        
         PoolManager.Instance.Push(this);
     }
 
@@ -139,6 +144,8 @@ public class SnakeController : ModuleController, IDamageable
         if (_isHead && other.CompareTag("Item"))
         {
             GrowUp();
+            PoolManager.Instance.Push(other.GetComponent<Item>());
+            StageManager.Instance.ItemBuilder.SpawnItem();
         }
 
         if (other.CompareTag("Enemy"))

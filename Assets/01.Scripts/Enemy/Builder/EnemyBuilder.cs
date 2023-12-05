@@ -6,10 +6,9 @@ public class EnemyBuilder
 {
     private readonly List<EnemyController> _enemies;
     private readonly List<BuildArea> _buildAreas;
-    
-    public bool IsEmpty => _enemies.Count <= 0;
 
     public List<EnemyController> Enemies => _enemies;
+    public bool IsEmpty => _enemies.Count <= 0;
 
     public EnemyBuilder(List<BuildArea> buildAreas)
     {
