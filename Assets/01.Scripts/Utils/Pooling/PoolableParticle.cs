@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -15,16 +16,17 @@ public class PoolableParticle : PoolableMono
         _particleSystem.transform.SetPositionAndRotation(position, rotation);
     }
 
-    public void Play()
+    public void Play(Action callBack = null)
     {
-        StartCoroutine(PlayRoutine());
+        StartCoroutine(PlayRoutine(callBack));
     }
 
-    private IEnumerator PlayRoutine()
+    private IEnumerator PlayRoutine(Action callBack = null)
     {
         var duration = _particleSystem.main.duration;
         _particleSystem.Play();
         yield return new WaitForSeconds(duration);
+        callBack?.Invoke();
         _particleSystem.Stop();
         PoolManager.Instance.Push(this);
     }

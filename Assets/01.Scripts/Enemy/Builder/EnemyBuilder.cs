@@ -32,9 +32,15 @@ public class EnemyBuilder
         for (var i = 0; i < cnt; i++)
         {
             var spawnPoint = GetSpawnPoint();
+
+            var effect = PoolManager.Instance.Pop("GenerateEnemyEffect") as PoolableParticle;
+            effect.SetPositionAndRotation(spawnPoint);
+            effect.Play();
+
             var enemy = PoolManager.Instance.Pop("Enemy") as EnemyController;
             enemy.transform.position = spawnPoint;
             _enemies.Add(enemy);
+            
             yield return new WaitForSeconds(0.1f);
         }
     }
