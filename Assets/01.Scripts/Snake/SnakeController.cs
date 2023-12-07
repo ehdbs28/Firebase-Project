@@ -23,6 +23,7 @@ public class SnakeController : ModuleController, IDamageable
     public InputControl InputControl => _inputControl;
     public SnakeData Data => _data;
     public bool IsHead => _isHead;
+    public bool IsDetached => _isDetached;
     public SnakeController Head => _head;
     public SnakeController Parent => _parent;
     public int Index => _index;
@@ -79,6 +80,25 @@ public class SnakeController : ModuleController, IDamageable
         _head = head;
         _parent = parent;
         _index = index;
+    }
+
+    public List<SnakeController> GetParts()
+    {
+        if (!_isHead)
+        {
+            return null;
+        }
+
+        var list = new List<SnakeController>();
+        var head = this;
+
+        while (head != null)
+        {
+            list.Add(head);
+            head = head._child;
+        }
+
+        return list;
     }
 
     private void GrowUp()
