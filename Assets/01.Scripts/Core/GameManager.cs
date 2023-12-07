@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     {
         AuthManager.Instance = new AuthManager();
         PoolManager.Instance = new PoolManager();
+        ScoreManager.Instance = GetComponent<ScoreManager>();
         StageManager.Instance = GetComponent<StageManager>();
     }
 

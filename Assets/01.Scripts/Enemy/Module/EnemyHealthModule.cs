@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class EnemyHealthModule : BaseModule<EnemyController>
 {
     private int _currentHealth;
@@ -21,6 +23,7 @@ public class EnemyHealthModule : BaseModule<EnemyController>
         
         if (_currentHealth <= 0)
         {
+            ScoreManager.Instance.ScoreUp(Random.Range(3, 6));
             StageManager.Instance.EnemyBuilder.RemoveEnemy(Controller);
 
             var destroyEffect = PoolManager.Instance.Pop("DestroyEffect") as PoolableParticle;

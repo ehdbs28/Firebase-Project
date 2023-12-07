@@ -144,6 +144,7 @@ public class SnakeController : ModuleController, IDamageable
         if (_isHead && other.CompareTag("Item"))
         {
             GrowUp();
+            ScoreManager.Instance.ScoreUp();
             PoolManager.Instance.Push(other.GetComponent<Item>());
             StageManager.Instance.ItemBuilder.SpawnItem();
         }
