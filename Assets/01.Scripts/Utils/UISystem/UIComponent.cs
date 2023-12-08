@@ -21,7 +21,7 @@ public abstract class UIComponent : PoolableMono, IUI
 
         if (options.HasFlag(UIGenerateOption.CLEAR_PANEL))
         {
-            // UIManager.Instance.ClearPanel();
+            UIManager.Instance.ClearPanel();
         }
         
         transform.SetParent(parent);
@@ -39,7 +39,7 @@ public abstract class UIComponent : PoolableMono, IUI
     {
         _isActive = false;
         transform.SetParent(_prevParent);
-        // PoolManager.Instance.Push(this);
+        PoolManager.Instance.Push(this);
     }
 
     public sealed override void Init()

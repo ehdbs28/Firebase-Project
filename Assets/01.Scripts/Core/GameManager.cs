@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         AuthManager.Instance = new AuthManager();
         PoolManager.Instance = new PoolManager();
         ScoreManager.Instance = GetComponent<ScoreManager>();
+        UIManager.Instance = new UIManager();
         StageManager.Instance = GetComponent<StageManager>();
     }
 

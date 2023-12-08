@@ -32,7 +32,6 @@ public class ScoreManager : MonoBehaviour
     public void ScoreUp(int score = 1)
     {
         _score += score;
-        Debug.Log(_score);
         OnScoreUpEvent?.Invoke(_score);
     }
 }
