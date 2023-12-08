@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(menuName = "SO/Input Control")]
-public class InputControl : ScriptableObject, Controls.IPlayerActions
+public class InputControl : ScriptableObject, Controls.IPlayerActions, Controls.IUIActions
 {
     public Vector3 MouseAimPosition { get; private set; }
 
@@ -16,6 +16,12 @@ public class InputControl : ScriptableObject, Controls.IPlayerActions
             return worldPos;
         }
     }
+    
+    // UI input event
+    public event Action OnMenuUpEvent = null;
+    public event Action OnMenuDownEvent = null;
+    public event Action OnSelectEvent = null;
+    public event Action OnBackEvent = null;
 
     private Controls _inputControls;
     
@@ -33,5 +39,37 @@ public class InputControl : ScriptableObject, Controls.IPlayerActions
     public void OnAim(InputAction.CallbackContext context)
     {
         MouseAimPosition = context.ReadValue<Vector2>();
+    }
+
+    public void OnMenuUp(InputAction.CallbackContext context)
+    {
+        if(context.performed)   
+        {
+            OnMenuUpEvent?.Invoke();
+        }
+    }
+
+    public void OnMenuDown(InputAction.CallbackContext context)
+    {
+        if(context.performed)   
+        {
+            OnMenuDownEvent?.Invoke();
+        }
+    }
+
+    public void OnSelect(InputAction.CallbackContext context)
+    {
+        if(context.performed)   
+        {
+            OnSelectEvent?.Invoke();
+        }
+    }
+
+    public void OnBack(InputAction.CallbackContext context)
+    {
+        if(context.performed)   
+        {
+            OnBackEvent?.Invoke();
+        }
     }
 }
