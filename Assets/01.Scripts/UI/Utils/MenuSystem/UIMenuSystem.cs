@@ -73,7 +73,7 @@ public class UIMenuSystem : MonoBehaviour
             _index = 0;
         }
         
-        _cursorRectTransform.anchoredPosition = new Vector2(0, _menus[_index].IndexPosition);
+        _cursorRectTransform.anchoredPosition = new Vector2(_cursorRectTransform.anchoredPosition.x, _menus[_index].IndexPosition);
     }
 
     private void ActionCallBack()

@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79dbb810f8714367b18cb83e9b2c8dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuSystem: {fileID: 0}
+  _menuSystem: {fileID: 175807191424888112}
 --- !u!1 &3527562942178787407
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 5987839012584860575}
   - component: {fileID: 8530124327481119770}
   - component: {fileID: 464516895003253925}
+  - component: {fileID: 3389412580531826676}
   m_Layer: 5
   m_Name: Login
   m_TagString: Untagged
@@ -149,7 +150,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -184,6 +185,33 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3389412580531826676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3527562942178787407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf7cd2a65f8024bb4b9667b73479bdd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CallBackEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7261121837590249036}
+        m_TargetAssemblyTypeName: SignScreen, Assembly-CSharp
+        m_MethodName: LoginHandle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6412774578461720897
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,6 +223,7 @@ GameObject:
   - component: {fileID: 2406764081488038035}
   - component: {fileID: 1808111944173599121}
   - component: {fileID: 6318942905874344034}
+  - component: {fileID: 3539543082815874599}
   m_Layer: 5
   m_Name: SignUp
   m_TagString: Untagged
@@ -283,7 +312,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -318,6 +347,33 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3539543082815874599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6412774578461720897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf7cd2a65f8024bb4b9667b73479bdd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CallBackEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7261121837590249036}
+        m_TargetAssemblyTypeName: SignScreen, Assembly-CSharp
+        m_MethodName: SignUpHandle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &6345481331807866887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -406,9 +462,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2874755210137854706, guid: a4cedf3d920a9497195fa701b2614b54, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -150
+      objectReference: {fileID: 0}
     - target: {fileID: 3158888455949225829, guid: a4cedf3d920a9497195fa701b2614b54, type: 3}
       propertyPath: m_Name
       value: MenuSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403680938164662572, guid: a4cedf3d920a9497195fa701b2614b54, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -421,6 +485,17 @@ PrefabInstance:
       addedObject: {fileID: 2406764081488038035}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4cedf3d920a9497195fa701b2614b54, type: 3}
+--- !u!114 &175807191424888112 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2702377396802077385, guid: a4cedf3d920a9497195fa701b2614b54, type: 3}
+  m_PrefabInstance: {fileID: 6345481331807866887}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6db6516d9564dc2bb0a39fe39abfeb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3211192905712623915 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8403680938164662572, guid: a4cedf3d920a9497195fa701b2614b54, type: 3}
