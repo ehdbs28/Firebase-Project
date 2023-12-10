@@ -136,6 +136,7 @@ public class SnakeController : ModuleController, IDamageable
         if (_isHead)
         {
             Debug.Log("GameOver");
+            StageManager.Instance.DisableStage();
         }
         else
         {
@@ -165,7 +166,6 @@ public class SnakeController : ModuleController, IDamageable
         {
             GrowUp();
             ScoreManager.Instance.ScoreUp();
-            PoolManager.Instance.Push(other.GetComponent<Item>());
             StageManager.Instance.ItemBuilder.SpawnItem();
         }
 

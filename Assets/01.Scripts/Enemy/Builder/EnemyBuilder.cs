@@ -24,6 +24,16 @@ public class EnemyBuilder
     public void RemoveEnemy(EnemyController enemy)
     {
         _enemies.Remove(enemy);
+        PoolManager.Instance.Push(enemy);
+    }
+
+    public void RemoveAllEnemy()
+    {
+        foreach (var enemy in _enemies)
+        {
+            PoolManager.Instance.Push(enemy);
+        }
+        _enemies.Clear();
     }
 
     private IEnumerator SpawnRoutine(int stage)

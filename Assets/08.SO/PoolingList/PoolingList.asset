@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: PoolingList
   m_EditorClassIdentifier: 
   poolingItems:
+  - prefab: {fileID: 8696633817551431076, guid: 39596cbd8c1f340cc998118891a313d6, type: 3}
+    cnt: 1
   - prefab: {fileID: 4845773407609473576, guid: c0ce06ff4d19d4f108f05ac76884292f, type: 3}
     cnt: 10
   - prefab: {fileID: 4021309432529101946, guid: 2511c9ffd9930486f8bc2820106d027d, type: 3}
@@ -27,3 +29,19 @@ MonoBehaviour:
     cnt: 10
   - prefab: {fileID: 7464881207545052750, guid: 191fe540111064e98b6e788d991bf9ca, type: 3}
     cnt: 10
+  - prefab: {fileID: -1304455263095638983, guid: 3bcfe6e3c6e7f4d24a41c8fed9339603, type: 3}
+    cnt: 1
+  - prefab: {fileID: 7767730839053952244, guid: 0942a2e270fbe40f8877643f8eb92c24, type: 3}
+    cnt: 1
+  - prefab: {fileID: 7261121837590249036, guid: 1e446ceaf22ce4abc9b73bad8ead2f65, type: 3}
+    cnt: 1
+  - prefab: {fileID: -6627380866321640402, guid: b8d45f6e18eb74bd9bfe56ce5f82e818, type: 3}
+    cnt: 1
+  - prefab: {fileID: -4969794026371294961, guid: 7877bacacd54f457985fd83c76f162b3, type: 3}
+    cnt: 1
+  - prefab: {fileID: -1136864905202972725, guid: 08873115fd86b4d0599317ea41258437, type: 3}
+    cnt: 1
+  - prefab: {fileID: -8116021233616786713, guid: 5f73ef435d89841bf9c8d21d7da35d88, type: 3}
+    cnt: 1
+  - prefab: {fileID: 4853112528328727868, guid: c2e2dfa79b16b4d4b95bab8afb90dfd8, type: 3}
+    cnt: 1

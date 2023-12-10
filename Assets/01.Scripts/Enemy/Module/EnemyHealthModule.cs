@@ -23,14 +23,12 @@ public class EnemyHealthModule : BaseModule<EnemyController>
         
         if (_currentHealth <= 0)
         {
-            ScoreManager.Instance.ScoreUp(Random.Range(3, 6));
-            StageManager.Instance.EnemyBuilder.RemoveEnemy(Controller);
-
             var destroyEffect = PoolManager.Instance.Pop("DestroyEffect") as PoolableParticle;
             destroyEffect.SetPositionAndRotation(Controller.transform.position);
             destroyEffect.Play();
             
-            PoolManager.Instance.Push(Controller);
+            ScoreManager.Instance.ScoreUp(Random.Range(3, 6));
+            StageManager.Instance.EnemyBuilder.RemoveEnemy(Controller);
         }
     }
 }

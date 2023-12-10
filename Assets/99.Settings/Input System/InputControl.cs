@@ -22,6 +22,7 @@ public class InputControl : ScriptableObject, Controls.IPlayerActions, Controls.
     public event Action OnMenuDownEvent = null;
     public event Action OnSelectEvent = null;
     public event Action OnBackEvent = null;
+    public event Action OnAnyKeyEvent = null;
 
     private Controls _inputControls;
     
@@ -31,9 +32,11 @@ public class InputControl : ScriptableObject, Controls.IPlayerActions, Controls.
         {
             _inputControls = new Controls();
             _inputControls.Player.SetCallbacks(this);
+            _inputControls.UI.SetCallbacks(this);
         }
         
         _inputControls.Player.Enable();
+        _inputControls.UI.Enable();
     }
 
     public void OnAim(InputAction.CallbackContext context)
@@ -70,6 +73,14 @@ public class InputControl : ScriptableObject, Controls.IPlayerActions, Controls.
         if(context.performed)   
         {
             OnBackEvent?.Invoke();
+        }
+    }
+
+    public void OnAnyKey(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            OnAnyKeyEvent?.Invoke();
         }
     }
 }

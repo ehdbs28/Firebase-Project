@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -31,12 +32,18 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        UIManager.Instance.GenerateUI("TitleScreen",
+            UIGenerateOption.RESET_POS | UIGenerateOption.STACKING | UIGenerateOption.CLEAR_PANEL);
+    }
+
     private void CreateManager()
     {
         AuthManager.Instance = new AuthManager();
         PoolManager.Instance = new PoolManager();
         ScoreManager.Instance = GetComponent<ScoreManager>();
-        UIManager.Instance = new UIManager();
+        UIManager.Instance = GetComponent<UIManager>();
         StageManager.Instance = GetComponent<StageManager>();
     }
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class UIComponent : PoolableMono, IUI
+public class UIComponent : PoolableMono, IUI
 {
     private Transform _prevParent;
 
@@ -13,7 +13,7 @@ public abstract class UIComponent : PoolableMono, IUI
     private bool _isActive;
     public bool IsActive => _isActive;
 
-    public void GenerateUI(Transform parent, UIGenerateOption options)
+    public virtual void GenerateUI(Transform parent, UIGenerateOption options)
     {
         _prevParent = transform.parent;
         _parent = parent;
@@ -35,7 +35,7 @@ public abstract class UIComponent : PoolableMono, IUI
         _isActive = true;
     }
 
-    public void RemoveUI()
+    public virtual void RemoveUI()
     {
         _isActive = false;
         transform.SetParent(_prevParent);
@@ -46,6 +46,4 @@ public abstract class UIComponent : PoolableMono, IUI
     {
         // Do Nothing;
     }
-
-    public abstract void UpdateUI();
 }

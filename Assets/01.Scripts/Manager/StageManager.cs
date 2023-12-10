@@ -18,6 +18,8 @@ public class StageManager : MonoBehaviour
     [SerializeField] private List<BuildArea> _enemyBuildAreas;
     [SerializeField] private BuildArea _itemBuildArea;
 
+    private bool _onStage;
+
     private void Awake()
     {
         _stage = 1;
@@ -25,16 +27,24 @@ public class StageManager : MonoBehaviour
         _itemBuilder = new ItemBuilder(_itemBuildArea);
     }
 
-    private void Start()
-    {
-        _itemBuilder.SpawnItem();
-    }
-
     private void Update()
     {
-        if (_enemyEnemyBuilder.IsEmpty)
+        if (_onStage && _enemyEnemyBuilder.IsEmpty)
         {
             _enemyEnemyBuilder.SpawnNewStage(_stage++);
         }
+    }
+
+    public void EnableStage()
+    {
+        _onStage = true;
+        _itemBuilder.SpawnItem();
+    }
+
+    public void DisableStage()
+    {
+        _onStage = false;
+        _itemBuilder.RemoveItem();
+        _enemyEnemyBuilder.RemoveAllEnemy();
     }
 }

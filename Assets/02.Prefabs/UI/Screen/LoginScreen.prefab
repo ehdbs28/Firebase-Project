@@ -558,6 +558,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6908135575711804225}
+  - component: {fileID: -1136864905202972725}
   m_Layer: 5
   m_Name: LoginScreen
   m_TagString: Untagged
@@ -586,6 +587,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &-1136864905202972725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2994005337422626083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcfffef83a2d407a82456353ec1e513e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputControl: {fileID: 11400000, guid: 3528abe7e4fea4e858721230700577be, type: 2}
+  _emailInput: {fileID: 150806071049041725}
+  _passwordInput: {fileID: 3793571933607821236}
 --- !u!1 &3101513421804253141
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager
+public class UIManager : MonoBehaviour
 {
     public static UIManager Instance = null;
 
@@ -16,7 +16,7 @@ public class UIManager
         _componentStack = new Stack<UIComponent>();
     }
 
-    public UIComponent GenerateUI(string name, UIGenerateOption options, Transform parent)
+    public UIComponent GenerateUI(string name, UIGenerateOption options, Transform parent = null)
     {
         if (parent == null)
         {

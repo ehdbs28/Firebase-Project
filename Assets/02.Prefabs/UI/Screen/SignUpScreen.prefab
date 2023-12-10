@@ -143,6 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8680324049164044819}
+  - component: {fileID: 7767730839053952244}
   m_Layer: 5
   m_Name: SignUpScreen
   m_TagString: Untagged
@@ -171,6 +172,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7767730839053952244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946845617399702870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5094763aa4734cf1849c41fbcd2aee1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputControl: {fileID: 11400000, guid: 3528abe7e4fea4e858721230700577be, type: 2}
+  _emailInput: {fileID: 5072313553092441024}
+  _passwordInput: {fileID: 6204816596817862214}
+  _nicknameInput: {fileID: 8264376395819984459}
 --- !u!1 &1915311791197018226
 GameObject:
   m_ObjectHideFlags: 0
