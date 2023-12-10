@@ -53,6 +53,7 @@ public class StageManager : MonoBehaviour
         _enemyEnemyBuilder.RemoveAllEnemy();
         PoolManager.Instance.Push(_snake);
         _snake = null;
+        AuthManager.Instance.SetScore(ScoreManager.Instance.Score);
         UIManager.Instance.GenerateUI("ResultScreen");
     }
 }

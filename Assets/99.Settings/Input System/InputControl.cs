@@ -26,6 +26,7 @@ public class InputControl : ScriptableObject, Controls.IPlayerActions, Controls.
     public event Action OnRightEvent = null;
     public event Action OnLeftEvent = null;
     public event Action OnResetEvent = null;
+    public event Action OnBackEvent = null;
 
     private Controls _inputControls;
     
@@ -100,6 +101,14 @@ public class InputControl : ScriptableObject, Controls.IPlayerActions, Controls.
         if (context.performed)
         {
             OnResetEvent?.Invoke();
+        }
+    }
+    
+    public void OnBack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            OnBackEvent?.Invoke();
         }
     }
 }

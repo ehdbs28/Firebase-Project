@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -34,8 +33,8 @@ public class GameManager : MonoBehaviour
 
     private void CreateManager()
     {
-        AuthManager.Instance = new AuthManager();
         PoolManager.Instance = new PoolManager();
+        AuthManager.Instance = new AuthManager();
         ScoreManager.Instance = GetComponent<ScoreManager>();
         UIManager.Instance = GetComponent<UIManager>();
         StageManager.Instance = GetComponent<StageManager>();

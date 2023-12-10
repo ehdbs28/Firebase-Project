@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class UIMenu : MonoBehaviour
+public class UIMenu : PoolableMono
 {
     private float _indexPosition;
     public float IndexPosition => _indexPosition;
@@ -14,8 +14,12 @@ public class UIMenu : MonoBehaviour
         _indexPosition = ((RectTransform)transform).anchoredPosition.y;
     }
 
-    public void OnAction()
+    public virtual void OnAction()
     {
         CallBackEvent?.Invoke();
+    }
+
+    public override void Init()
+    {
     }
 }

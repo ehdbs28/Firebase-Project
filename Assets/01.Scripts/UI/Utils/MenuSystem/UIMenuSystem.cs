@@ -5,6 +5,8 @@ using UnityEngine;
 public class UIMenuSystem : MonoBehaviour
 {
     [SerializeField] private InputControl _inputSO;
+    [SerializeField] private Transform _menuTrm;
+    public Transform MenuTrm => _menuTrm;
 
     private RectTransform _cursorRectTransform;
 
