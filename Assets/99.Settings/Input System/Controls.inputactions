@@ -61,18 +61,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Back",
+                    "name": "AnyKey",
                     "type": "Button",
-                    "id": "25d7997f-eeb1-49f5-a653-a5ec2850d33c",
+                    "id": "619fa9d6-bfdc-43cf-bcbd-8e478bb3544c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "AnyKey",
+                    "name": "Right",
                     "type": "Button",
-                    "id": "619fa9d6-bfdc-43cf-bcbd-8e478bb3544c",
+                    "id": "181cbce7-9ac5-4d59-899c-f4415482c472",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Left",
+                    "type": "Button",
+                    "id": "c0f12ec6-0c09-42f4-9589-36249b290b98",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -148,23 +157,34 @@
                 },
                 {
                     "name": "",
-                    "id": "c449f71c-b220-4ff7-9140-c9e7b8535fc7",
-                    "path": "<Keyboard>/backspace",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "Back",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "17d7e512-4d3b-420a-986c-f34c2fbc764c",
                     "path": "<Keyboard>/anyKey",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "AnyKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ec721317-f151-448b-afde-730a3022cd7f",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a2fefba-fe2d-47cf-a4bd-d2d5378c35d8",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

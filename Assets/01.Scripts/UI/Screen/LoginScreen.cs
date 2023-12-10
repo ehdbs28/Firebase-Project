@@ -22,6 +22,6 @@ public class LoginScreen : UIComponent
 
     private void EnterKeyHandle()
     {
-        
+        UIManager.Instance.GenerateUI("MenuScreen");
     }
 }

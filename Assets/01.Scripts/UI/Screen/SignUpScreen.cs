@@ -24,6 +24,6 @@ public class SignUpScreen : UIComponent
 
     private void EnterKeyHandle()
     {
-        
+        UIManager.Instance.GenerateUI("MenuScreen");
     }
 }

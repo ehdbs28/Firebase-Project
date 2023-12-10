@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
         _componentStack = new Stack<UIComponent>();
     }
 
-    public UIComponent GenerateUI(string name, UIGenerateOption options, Transform parent = null)
+    public UIComponent GenerateUI(string name, UIGenerateOption options = UIGenerateOption.RESET_POS | UIGenerateOption.STACKING | UIGenerateOption.CLEAR_PANEL, Transform parent = null)
     {
         if (parent == null)
         {

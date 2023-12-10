@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class StageManager : MonoBehaviour
 {
@@ -15,6 +13,9 @@ public class StageManager : MonoBehaviour
     private ItemBuilder _itemBuilder;
     public ItemBuilder ItemBuilder => _itemBuilder;
 
+    private SnakeController _snake;
+    public SnakeController Snake => _snake;
+
     [SerializeField] private List<BuildArea> _enemyBuildAreas;
     [SerializeField] private BuildArea _itemBuildArea;
 
@@ -25,6 +26,7 @@ public class StageManager : MonoBehaviour
         _stage = 1;
         _enemyEnemyBuilder = new EnemyBuilder(_enemyBuildAreas);
         _itemBuilder = new ItemBuilder(_itemBuildArea);
+        _snake = null;
     }
 
     private void Update()
@@ -37,8 +39,9 @@ public class StageManager : MonoBehaviour
 
     public void EnableStage()
     {
-        _onStage = true;
+        _snake = PoolManager.Instance.Pop("Snake") as SnakeController;
         _itemBuilder.SpawnItem();
+        _onStage = true;
     }
 
     public void DisableStage()

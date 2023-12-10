@@ -10,9 +10,6 @@ public class GameManager : MonoBehaviour
     private Camera _mainCam;
     public Camera MainCam => _mainCam;
 
-    private SnakeController _snake;
-    public SnakeController Snake => _snake;
-
     public void Awake()
     {
         if (Instance != null)
@@ -27,15 +24,12 @@ public class GameManager : MonoBehaviour
         CreateManager();
         CreatePool();
 
-        _snake = FindObjectOfType<SnakeController>();
-        
         DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
-        UIManager.Instance.GenerateUI("TitleScreen",
-            UIGenerateOption.RESET_POS | UIGenerateOption.STACKING | UIGenerateOption.CLEAR_PANEL);
+        UIManager.Instance.GenerateUI("TitleScreen");
     }
 
     private void CreateManager()

@@ -21,8 +21,9 @@ public class InputControl : ScriptableObject, Controls.IPlayerActions, Controls.
     public event Action OnMenuUpEvent = null;
     public event Action OnMenuDownEvent = null;
     public event Action OnSelectEvent = null;
-    public event Action OnBackEvent = null;
     public event Action OnAnyKeyEvent = null;
+    public event Action OnRightEvent = null;
+    public event Action OnLeftEvent = null;
 
     private Controls _inputControls;
     
@@ -68,19 +69,27 @@ public class InputControl : ScriptableObject, Controls.IPlayerActions, Controls.
         }
     }
 
-    public void OnBack(InputAction.CallbackContext context)
-    {
-        if(context.performed)   
-        {
-            OnBackEvent?.Invoke();
-        }
-    }
-
     public void OnAnyKey(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
             OnAnyKeyEvent?.Invoke();
+        }
+    }
+
+    public void OnRight(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            OnRightEvent?.Invoke();
+        }
+    }
+
+    public void OnLeft(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            OnLeftEvent?.Invoke();
         }
     }
 }

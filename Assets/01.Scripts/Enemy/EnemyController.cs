@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using UnityEngine;
 
@@ -31,7 +30,7 @@ public class EnemyController : ModuleController, IDamageable
 
     private void TargetSetting()
     {
-        var snakeParts = GameManager.Instance.Snake.GetParts();
+        var snakeParts = StageManager.Instance.Snake.GetParts();
         _target = snakeParts.OrderBy(part => Vector3.Distance(transform.position, part.transform.position)).First();
     }
     

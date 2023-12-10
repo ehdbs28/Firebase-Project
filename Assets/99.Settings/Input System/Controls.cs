@@ -83,18 +83,27 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Back"",
+                    ""name"": ""AnyKey"",
                     ""type"": ""Button"",
-                    ""id"": ""25d7997f-eeb1-49f5-a653-a5ec2850d33c"",
+                    ""id"": ""619fa9d6-bfdc-43cf-bcbd-8e478bb3544c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""AnyKey"",
+                    ""name"": ""Right"",
                     ""type"": ""Button"",
-                    ""id"": ""619fa9d6-bfdc-43cf-bcbd-8e478bb3544c"",
+                    ""id"": ""181cbce7-9ac5-4d59-899c-f4415482c472"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""c0f12ec6-0c09-42f4-9589-36249b290b98"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -170,23 +179,34 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c449f71c-b220-4ff7-9140-c9e7b8535fc7"",
-                    ""path"": ""<Keyboard>/backspace"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
-                    ""action"": ""Back"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""17d7e512-4d3b-420a-986c-f34c2fbc764c"",
                     ""path"": ""<Keyboard>/anyKey"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
                     ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec721317-f151-448b-afde-730a3022cd7f"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a2fefba-fe2d-47cf-a4bd-d2d5378c35d8"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -220,8 +240,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_UI_MenuUp = m_UI.FindAction("MenuUp", throwIfNotFound: true);
         m_UI_MenuDown = m_UI.FindAction("MenuDown", throwIfNotFound: true);
         m_UI_Select = m_UI.FindAction("Select", throwIfNotFound: true);
-        m_UI_Back = m_UI.FindAction("Back", throwIfNotFound: true);
         m_UI_AnyKey = m_UI.FindAction("AnyKey", throwIfNotFound: true);
+        m_UI_Right = m_UI.FindAction("Right", throwIfNotFound: true);
+        m_UI_Left = m_UI.FindAction("Left", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -332,8 +353,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_MenuUp;
     private readonly InputAction m_UI_MenuDown;
     private readonly InputAction m_UI_Select;
-    private readonly InputAction m_UI_Back;
     private readonly InputAction m_UI_AnyKey;
+    private readonly InputAction m_UI_Right;
+    private readonly InputAction m_UI_Left;
     public struct UIActions
     {
         private @Controls m_Wrapper;
@@ -341,8 +363,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @MenuUp => m_Wrapper.m_UI_MenuUp;
         public InputAction @MenuDown => m_Wrapper.m_UI_MenuDown;
         public InputAction @Select => m_Wrapper.m_UI_Select;
-        public InputAction @Back => m_Wrapper.m_UI_Back;
         public InputAction @AnyKey => m_Wrapper.m_UI_AnyKey;
+        public InputAction @Right => m_Wrapper.m_UI_Right;
+        public InputAction @Left => m_Wrapper.m_UI_Left;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -361,12 +384,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Select.started += instance.OnSelect;
             @Select.performed += instance.OnSelect;
             @Select.canceled += instance.OnSelect;
-            @Back.started += instance.OnBack;
-            @Back.performed += instance.OnBack;
-            @Back.canceled += instance.OnBack;
             @AnyKey.started += instance.OnAnyKey;
             @AnyKey.performed += instance.OnAnyKey;
             @AnyKey.canceled += instance.OnAnyKey;
+            @Right.started += instance.OnRight;
+            @Right.performed += instance.OnRight;
+            @Right.canceled += instance.OnRight;
+            @Left.started += instance.OnLeft;
+            @Left.performed += instance.OnLeft;
+            @Left.canceled += instance.OnLeft;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -380,12 +406,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Select.started -= instance.OnSelect;
             @Select.performed -= instance.OnSelect;
             @Select.canceled -= instance.OnSelect;
-            @Back.started -= instance.OnBack;
-            @Back.performed -= instance.OnBack;
-            @Back.canceled -= instance.OnBack;
             @AnyKey.started -= instance.OnAnyKey;
             @AnyKey.performed -= instance.OnAnyKey;
             @AnyKey.canceled -= instance.OnAnyKey;
+            @Right.started -= instance.OnRight;
+            @Right.performed -= instance.OnRight;
+            @Right.canceled -= instance.OnRight;
+            @Left.started -= instance.OnLeft;
+            @Left.performed -= instance.OnLeft;
+            @Left.canceled -= instance.OnLeft;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -421,7 +450,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnMenuUp(InputAction.CallbackContext context);
         void OnMenuDown(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
-        void OnBack(InputAction.CallbackContext context);
         void OnAnyKey(InputAction.CallbackContext context);
+        void OnRight(InputAction.CallbackContext context);
+        void OnLeft(InputAction.CallbackContext context);
     }
 }
