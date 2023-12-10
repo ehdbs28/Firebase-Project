@@ -27,7 +27,7 @@ public class SignUpScreen : UIComponent
         var password = _passwordInput.text;
         var nickname = _nicknameInput.text;
 
-        if (await AuthManager.Instance.SignUp(email, password))
+        if (await AuthManager.Instance.SignUp(email, password, nickname))
         {
             UIManager.Instance.GenerateUI("MenuScreen");
         }

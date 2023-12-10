@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Firebase;
 using Firebase.Auth;
+using Firebase.Database;
 using UnityEngine;
 
 public class AuthManager
@@ -9,6 +10,8 @@ public class AuthManager
     public static AuthManager Instance = null;
     
     private FirebaseAuth _auth;
+    private DatabaseReference _dbReference;
+    private FirebaseUser _user;
 
     public AuthManager()
     {
@@ -18,6 +21,7 @@ public class AuthManager
             if (dependencyStatus == Firebase.DependencyStatus.Available)
             {
                 _auth = FirebaseAuth.DefaultInstance;
+                _dbReference = FirebaseDatabase.DefaultInstance.RootReference;
             }
             else
             {
@@ -26,10 +30,10 @@ public class AuthManager
         });
     }
 
-    public async Task<bool> SignUp(string email, string password)
+    public async Task<bool> SignUp(string email, string password, string nickname)
     {
         var success = true;
-        await _auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
+        await _auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(async task =>
         {
             if (task.IsCanceled)
             {
@@ -45,16 +49,26 @@ public class AuthManager
                 return;
             }
 
-            var newUser = task.Result.User;
-            Debug.Log($"Firebase user created successfully: {newUser.DisplayName}({newUser.UserId})");
+            _user = task.Result.User;
+            
+            var user = _auth.CurrentUser;
+            var profile = new UserProfile
+            {
+                DisplayName = nickname
+            };
+            var profileTask = user.UpdateUserProfileAsync(profile);
+            await profileTask;
+            await SaveUserName(nickname);
+            
+            Debug.Log($"Firebase user created successfully: {_user.DisplayName}({_user.UserId})");
         });
         return success;
     }
 
-    public bool SignIn(string email, string password)
+    public async Task<bool> SignIn(string email, string password)
     {
         var success = true;
-        _auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
+        await _auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
         {
             if (task.IsCanceled)
             {
@@ -70,9 +84,40 @@ public class AuthManager
                 return;
             }
 
-            var newUser = task.Result.User;
-            Debug.Log($"Firebase user sign in successfully: {newUser.DisplayName}({newUser.UserId})");
+            _user = task.Result.User;
+            Debug.Log($"Firebase user sign in successfully: {_user.DisplayName}({_user.UserId})");
         });
         return success;
+    }
+
+    private async Task SaveUserName(string nickname)
+    {
+        var task =  _dbReference.Child("users").Child(_user.UserId).Child("UserName").SetValueAsync(nickname);
+        await task;
+
+        if (task.Exception != null)
+        {
+            Debug.LogWarning($"Load Task failed with {task.Exception}");
+        }
+        else
+        {
+            Debug.Log("Same Completed");
+        }
+    }
+
+    private async void LoadUserName()
+    {
+        var task = _dbReference.Child("users").Child(_user.UserId).Child("UserName").GetValueAsync();
+        await task;
+
+        if (task.Exception != null)
+        {
+            Debug.LogWarning($"Load Task failed with {task.Exception}");
+        }
+        else
+        {
+            var snapshot = task.Result;
+            Debug.Log("Load Complete");
+        }
     }
 }
