@@ -29,6 +29,11 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    public void ResetScore()
+    {
+        _score = 0;
+    }
+
     public void ScoreUp(int score = 1)
     {
         _score += score;

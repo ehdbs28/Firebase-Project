@@ -18,7 +18,6 @@ public class MenuScreen : UIComponent
 
     public void PlayGameHandle()
     {
-        UIManager.Instance.GenerateUI("InGameScreen");
         StageManager.Instance.EnableStage();
     }
 

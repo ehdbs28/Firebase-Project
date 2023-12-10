@@ -16,7 +16,8 @@ public class InputControl : ScriptableObject, Controls.IPlayerActions, Controls.
             return worldPos;
         }
     }
-    
+
+
     // UI input event
     public event Action OnMenuUpEvent = null;
     public event Action OnMenuDownEvent = null;
@@ -24,6 +25,7 @@ public class InputControl : ScriptableObject, Controls.IPlayerActions, Controls.
     public event Action OnAnyKeyEvent = null;
     public event Action OnRightEvent = null;
     public event Action OnLeftEvent = null;
+    public event Action OnResetEvent = null;
 
     private Controls _inputControls;
     
@@ -90,6 +92,14 @@ public class InputControl : ScriptableObject, Controls.IPlayerActions, Controls.
         if (context.performed)
         {
             OnLeftEvent?.Invoke();
+        }
+    }
+
+    public void OnReset(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            OnResetEvent?.Invoke();
         }
     }
 }

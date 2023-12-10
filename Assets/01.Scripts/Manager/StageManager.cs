@@ -23,7 +23,6 @@ public class StageManager : MonoBehaviour
 
     private void Awake()
     {
-        _stage = 1;
         _enemyEnemyBuilder = new EnemyBuilder(_enemyBuildAreas);
         _itemBuilder = new ItemBuilder(_itemBuildArea);
         _snake = null;
@@ -39,6 +38,9 @@ public class StageManager : MonoBehaviour
 
     public void EnableStage()
     {
+        UIManager.Instance.GenerateUI("InGameScreen");
+        _stage = 1;
+        ScoreManager.Instance.ResetScore();
         _snake = PoolManager.Instance.Pop("Snake") as SnakeController;
         _itemBuilder.SpawnItem();
         _onStage = true;
@@ -49,5 +51,8 @@ public class StageManager : MonoBehaviour
         _onStage = false;
         _itemBuilder.RemoveItem();
         _enemyEnemyBuilder.RemoveAllEnemy();
+        PoolManager.Instance.Push(_snake);
+        _snake = null;
+        UIManager.Instance.GenerateUI("ResultScreen");
     }
 }
