@@ -1,5 +1,4 @@
 using TMPro;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class SignUpScreen : UIComponent
@@ -22,8 +21,15 @@ public class SignUpScreen : UIComponent
         _inputControl.OnSelectEvent -= EnterKeyHandle;
     }
 
-    private void EnterKeyHandle()
+    private async void EnterKeyHandle()
     {
-        UIManager.Instance.GenerateUI("MenuScreen");
+        var email = _emailInput.text;
+        var password = _passwordInput.text;
+        var nickname = _nicknameInput.text;
+
+        if (await AuthManager.Instance.SignUp(email, password))
+        {
+            UIManager.Instance.GenerateUI("MenuScreen");
+        }
     }
 }
