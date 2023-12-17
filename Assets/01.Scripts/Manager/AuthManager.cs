@@ -74,9 +74,8 @@ public class AuthManager
             await profileTask;
 
             await SaveUserName(nickname);
-            await LoadLastLogin();
-            await LoadDayCount();
             await SaveLastLogin();
+            await SaveDayCount(1);
             await LoadUsers();
             // await SetBirthday();
 
